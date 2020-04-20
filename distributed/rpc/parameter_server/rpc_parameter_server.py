@@ -188,7 +188,8 @@ def run_training_loop(rank, num_gpus, train_loader, test_loader):
                 ParameterServer.get_dist_gradients,
                 net.param_server_rref,
                 cid) != {}
-            opt.step(cid)
+            #opt.step(cid)
+            opt.step()
 
     print("Training complete!")
     print("Getting accuracy....")
