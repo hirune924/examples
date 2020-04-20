@@ -180,7 +180,8 @@ def run_training_loop(rank, num_gpus, train_loader, test_loader):
             loss = F.nll_loss(model_output, target)
             if i % 5 == 0:
                 print(f"Rank {rank} training batch {i} loss {loss.item()}")
-            dist_autograd.backward(cid, [loss])
+            #dist_autograd.backward(cid, [loss])
+            dist_autograd.backward([loss])
             # Ensure that dist autograd ran successfully and gradients were
             # returned.
             assert remote_method(
